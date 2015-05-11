@@ -1,0 +1,92 @@
+---
+title: "Regression Models Course Project"
+author: "Yolanda Xu"
+date: "February 21, 2015"
+output: html_document
+---
+
+## Executive Summary
+
+This Yolanda Xu, who works for Motor Trend, a magazine about the automobile industry. Looking at a data set of a collection of cars, we are interested in exploring the relationship between a set of variables and miles per gallon (MPG) (outcome). We are particularly interested in the following two questions:
+
+1. “Is an automatic or manual transmission better for MPG”
+2. "Quantify the MPG difference between automatic and manual transmissions"
+
+Thus, these two questions are my focuses in this project. 
+
+```{r}
+data(mtcars)
+head(mtcars)
+```
+As from the summary, variables "cyl", "vs", "am", "gear" and "carb" are categorical variables, so I will creat factors for these during the regression. 
+
+```{r}
+mtcars$cyl<-factor(mtcars$cyl)
+mtcars$vs<-factor(mtcars$vs, levels=c(0, 1), labels=c("s", "v"))
+mtcars$am<-factor(mtcars$am, levels=c(0, 1), labels =c("automatic", "manual"))
+mtcars$gear<-factor(mtcars$gear)
+mtcars$carb<-factor(mtcars$carb)
+```
+## Exploratory Analysis 
+
+As shown in Figure 1. in Appendix, the absolute value of correlation between "mpg" and all other varibales are between 0.419 and 0.868. If setting 0.5 as the threshold,all others show strong relationship with "mpg" except "qsec" and "gear". Also, "am" has strong correlation with "cyl", "disp", "drat", "wt" and "gear".
+
+From Figure 2.violin plot, motors with "am" as "manual" have higher mean than those with "am" as "automatic". 
+
+## Regression Models
+```{r}
+fit1<-lm(mpg~., data=mtcars)
+fit2<-lm(mpg~am, data=mtcars)
+fit3<-lm(mpg~am+wt, data=mtcars)
+fit4<-lm(mpg~am*wt, data=mtcars)
+summary(fit4)$coefficients
+```
+fit1 includes all the variables. With 95% confidence, none of the variables satisfies t-test. 
+
+fit2 is a simple fit of the problem. am(mannual) has coefficient 7.245, which means the manual transmission motors is 7.245 miles higher than the automatic transimission motors in "mpg". It shows significant difference with p=0.000285.With 95% confidence, we can estimate that the actual difference between manual and automatic transmission motors is within range (3.64, 10.85). 
+
+fit3 to fit4 add more varible of "wt", which are considered to be correlated to both "mpg" and "am". I include the interaction term in the model fit4, and this one shows the highest R-squared value of 0.833. The high highest R-squared value indicates taht the model explains much more variance than all the others. Also, actually including more variables like "cyl", "disp" and "drat" might give a better R-squared value of 0.90, but the limited increase in explained variance make the model much more complicated to interpret. It might be a phenomenon of vairance inflation, so I drop those models here. 
+
+We can see that there is a difference between automatic and manual transimission: 
+
+1. If the weight of an automatic transmission car goes up by 1000lbs, the expected mpg drops by roughly 3.8 miles.
+2. Item 2 If the weight of a manual transmission car goes up by 1000lbs, the expected mpg drops only roughly 9.1 miles-more than twice as fast.
+
+From Appendix Figure 3., both "Normal Q-Q" plot and "Residuals Distribution" plot show the residuals of fit4 are random and normally ditributed.
+
+## Conclusion
+With regression models, we are able to answer the two questions now:
+
+1. A simple regression and the violin plot show that the manual transmission motors is 7.245 miles higher than the automatic transimission motors in MPG, which means an automatic transimission motor is better for MPG.
+2. Quantitatively, increasing the weight of motors can reduce the difference the automatic and manual transmissions.
+
+To conclude, though we build a satisfactory regression model here, we leave out many factors like "cyl", "disp" and "drat", which might increase the explained variance and build a better model.  
+
+
+
+
+## Apendix
+
+#### Figure 1.
+```{r, echo=FALSE}
+data(mtcars)
+require(GGally)
+require(ggplot2)
+g=ggpairs(mtcars, lower=list(continuous="smooth"), params=c(method="loess"))
+```
+
+
+#### Figure 2.
+```{r, echo=FALSE}
+library(ggplot2)
+p<-ggplot(mtcars, aes(factor(am), mpg))
+p+geom_violin()
+```
+
+
+#### Figure 3.
+```{r, echo=FALSE}
+par(mfrow=c(2,3))
+plot(fit4)
+plot(resid(fit4), main="Residuals Distribution", xlab="Index", ylab= "Residuals")
+```
