@@ -59,7 +59,7 @@ If my X from a linear regression is measured in centimeters and I convert it to 
 It would get multiplied by 100.
 
 #QUESTION 8
-I have an outcome, Y, and a predictor, X and fit a linear regression model with Y = β0 + β1X + ε to obtain β0 and β1. What would be the consequence to the subsequent slope and intercept if I were to refit the model with a new regressor, X + c for some constant, c?
+I have an outcome, $Y$, and a predictor, $X$ and fit a linear regression model with $Y = \beta_0 + \beta_1 X + \varepsilon$ to obtain $\beta_0$ and $\beta_1$. What would be the consequence to the subsequent slope and intercept if I were to refit the model with a new regressor, $X + c$ for some constant, $c$?
 
 The new intercept would be $\beta_0 - c\beta_1$. If $Y = \beta_0 + \beta_1 X + \varepsilon$, then $Y = \beta_0 - c\beta_1 + \beta_1 (X+c) + \varepsilon$.
 
