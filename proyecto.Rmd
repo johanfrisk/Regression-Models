@@ -1,10 +1,10 @@
 ---
 title: "Regression Models Project - Mauricio Vargas S."
-output: pdf_document
+output: html_document
 ---
 
 ##Short summary:
-\textbf{Does automatic transmission (among other variables) explain MPG in different car models?. To provide some light about this I have worked with R's cars database named Mtcars that contains different car models characteristics. In this report I can conclude that weight and cylinders are important variables and those (and not transmission) explain MPG in different car models. To answer this question I have used ANOVA which allows to determine if a variable can be dropped in a multivariated model.}
+Does automatic transmission (among other variables) explain MPG in different car models?. To provide some light about this I have worked with R's cars database named Mtcars that contains different car models characteristics. In this report I can conclude that weight and cylinders are important variables and those (and not transmission) explain MPG in different car models. To answer this question I have used ANOVA which allows to determine if a variable can be dropped in a multivariated model.
 
 ##1st Step: Load data and determine principal variables:
 
