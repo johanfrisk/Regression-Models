@@ -8,7 +8,7 @@ Does automatic transmission (among other variables) explain MPG in different car
 
 ##1st Step: Load data and determine principal variables:
 
-```{r, results='hide'}
+```{r}
 library(datasets) #This library provides free databases
 data(mtcars) #The database I will use
 str(mtcars) #str displays variables names and displays basic information

@@ -8,9 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
-<meta name="author" content="Pachamaltese" />
 
-<meta name="date" content="2015-02-21" />
 
 <title>Regression Models Project - Mauricio Vargas S.</title>
 
@@ -63,8 +61,6 @@ img {
 
 <div id="header">
 <h1 class="title">Regression Models Project - Mauricio Vargas S.</h1>
-<h4 class="author"><em>Pachamaltese</em></h4>
-<h4 class="date"><em>February 21, 2015</em></h4>
 </div>
 
 
@@ -77,6 +73,18 @@ img {
 <pre class="r"><code>library(datasets) #This library provides free databases
 data(mtcars) #The database I will use
 str(mtcars) #str displays variables names and displays basic information</code></pre>
+<pre><code>## 'data.frame':    32 obs. of  11 variables:
+##  $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+##  $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...
+##  $ disp: num  160 160 108 258 360 ...
+##  $ hp  : num  110 110 93 110 175 105 245 62 95 123 ...
+##  $ drat: num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
+##  $ wt  : num  2.62 2.88 2.32 3.21 3.44 ...
+##  $ qsec: num  16.5 17 18.6 19.4 17 ...
+##  $ vs  : num  0 0 1 1 0 1 0 1 1 1 ...
+##  $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
+##  $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
+##  $ carb: num  4 4 1 1 2 1 4 2 2 4 ...</code></pre>
 <p>There are several variables in this dataset. ANOVA (analysis of variance) will be used to determine whose variables are relevant apart from transmission type. I will proceed from general to particular, so I won’t lose generality after dropping variables.</p>
 </div>
 <div id="anova" class="section level2">
